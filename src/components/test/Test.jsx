@@ -22,7 +22,7 @@ class Test extends React.Component {
             answer: ""
         },
         answers: {
-            answered: [false, false, false, false, false, false, false, false, false, false]
+            answered: []
         },
         nameTest: ""
     };
@@ -38,7 +38,7 @@ class Test extends React.Component {
 
         })
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => this.setMasOfQ(data));
         fetch("http://127.0.0.1:5000/testsystem/api/v1.0/labs/" + idTest)
             .then(response => response.json())
             .then(data => {
@@ -53,21 +53,67 @@ class Test extends React.Component {
     }
 
     setMasOfQ(array) {
-        console.log(array);
-        this.masOfQ = array;
-        console.log(this.masOfQ);
+
+        let Questions_choose_of_formula = array[0].Questions_choose_of_formula;
+        let Questions_one_of_four = array[1].Questions_one_of_four;
+        let Questions_input_number = array[2].Questions_input_number;
+
+        this.masOfQ = this.masOfQ.concat(Questions_choose_of_formula.map(this.transformDataFromServer_choose_of_formula));
+        this.masOfQ = this.masOfQ.concat(Questions_one_of_four.map(this.transformDataFromServer_one_of_four));
+        this.masOfQ = this.masOfQ.concat(Questions_input_number.map(this.transformDataFromServer_input_number));
+
+        this.masOfQ = this.masOfQ.map((value, index, array) => {
+            value.id = index + 1;
+            return value
+        });
+
         let property = this.state;
         property.question = this.masOfQ[0];
+        property.answers.answered = [].fill(this.masOfQ.length, false);
         this.setState(property)
 
     }
 
-    transformDataFromServer(value, index, array) {
+    transformDataFromServer_input_number(value, index, array) {
+        return {
+            id: null,
+            q: value.textOfQuestion,
+            answer: "",
+            correctAnswer: value.correctAnswer,
+            typeQuestion: value.typeQuestion
+        };
+    }
+
+    transformDataFromServer_one_of_four(value, index, array) {
+        let answers = [value.incorrectOptions1, value.incorrectOptions2, value.incorrectOptions3, value.correctAnswer];
+        return {
+            id: null,
+            q: value.textOfQuestion,
+            o1: answers.splice(new Date() % answers.length, 1)[0],
+            o2: answers.splice(new Date() % answers.length, 1)[0],
+            o3: answers.splice(new Date() % answers.length, 1)[0],
+            o4: answers.splice(new Date() % answers.length, 1)[0],
+            answer: "",
+            correctAnswer: value.correctAnswer,
+            typeQuestion: value.typeQuestion
+        };
+
+    }
+
+    transformDataFromServer_choose_of_formula(value, index, array) {
+        let answers = [value.incorrectOptions1, value.incorrectOptions2, value.incorrectOptions3, value.correctFormula];
 
         return {
-            id: index + 1, q: value.textOfQuestion, o1: value.incorrectOptions1,
-            o2: value.incorrectOptions2, o3: value.incorrectOptions3,
-            o4: value.correctAnswer, answer: "", correctAnswer: value.correctAnswer, typeQuestion: 1
+            id: null,
+            q: value.textOfQuestion,
+            o1: answers.splice(new Date() % answers.length, 1)[0],
+            o2: answers.splice(new Date() % answers.length, 1)[0],
+            o3: answers.splice(new Date() % answers.length, 1)[0],
+            o4: answers.splice(new Date() % answers.length, 1)[0],
+            answer: "",
+            correctAnswer:
+            value.correctFormula,
+            typeQuestion: value.typeQuestion
         };
 
     }
