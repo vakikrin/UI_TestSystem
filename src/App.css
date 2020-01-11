@@ -15,29 +15,47 @@
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    transform: translateY(+30%);
 }
 
-.form input {
+.form select {
     font-family: "Roboto", sans-serif;
     outline: 0;
-    background: #f2f2f2;
+    background: #FFFFFF;
+    border: 1px solid #4d4d4d;
     width: 100%;
-    border: 0;
+    border-radius: 4px 4px 4px 4px;
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
+    transition-property: border;
+    transition-duration: .4s;
+}
+
+.formName {
+    font-size: 36px;
+    padding: 10px;
+
+}
+
+.formInfo {
+    font-size: 16px;
+    padding: 20px;
+
 }
 
 .form button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
-    width: 100%;
+    background: #0000CD;
+    width: 50%;
     border: 0;
     padding: 15px;
+    margin-top: 20px;
     color: #FFFFFF;
+    border-radius: 4px 4px 4px 4px;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
@@ -66,7 +84,7 @@
 .container {
     position: relative;
     z-index: 1;
-    max-width: 300px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -104,12 +122,45 @@
 }
 
 body {
-    background: #76b852; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
+    background: #FFFFFF; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #FFFFFF, #f2f2f2);
+    background: -moz-linear-gradient(right, #FFFFFF, #f2f2f2);
+    background: -o-linear-gradient(right, #FFFFFF, #f2f2f2);
+    background: linear-gradient(to left, #FFFFFF, #f2f2f2);
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.paginationMenu {
+    background: rgb(236, 234, 234);
+    box-shadow: 0 5px rgb(187, 185, 185);
+    max-width: 500px;
+}
+
+.paginationMenu ul {
+    margin: 0%;
+
+}
+
+.paginationMenu li {
+    margin-left: -4px;
+    display: inline-block;
+    width: 45px;
+    height: 35px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.liAnswered {
+    background: #EF3B3A;
+}
+
+.paginationMenu li:hover {
+    background: rgb(100, 100, 216);
+    box-shadow: 0 5px black;
+}
+
+.buttonContainer {
+    margin: 10%;
 }
