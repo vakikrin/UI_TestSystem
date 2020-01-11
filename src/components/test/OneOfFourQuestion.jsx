@@ -3,7 +3,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+
 
 
 class OneOfFourQuestion extends React.Component {
@@ -11,18 +11,17 @@ class OneOfFourQuestion extends React.Component {
 
     render() {
         return (
-            <FormControl component="fieldset" className="formControl">
-                <FormLabel component="legend"></FormLabel>
+            <FormControl component="fieldset" className="formControl" mx="auto">
 
-                <RadioGroup aria-label="gender" name="gender1" value={this.props.question.answer}
+                <RadioGroup value={this.props.question.answer}
                             onChange={this.props.handleChange}>
-                    <FormControlLabel value={this.props.question.o1} control={<Radio/>}
+                    <FormControlLabel value={this.props.question.o1} control={<Radio color="primary"/>}
                                       label={this.props.question.o1}/>
-                    <FormControlLabel value={this.props.question.o2} control={<Radio/>}
+                    <FormControlLabel value={this.props.question.o2} control={<Radio color="primary"/>}
                                       label={this.props.question.o2}/>
-                    <FormControlLabel value={this.props.question.o3} control={<Radio/>}
+                    <FormControlLabel value={this.props.question.o3} control={<Radio color="primary"/>}
                                       label={this.props.question.o3}/>
-                    <FormControlLabel value={this.props.question.o4} control={<Radio/>}
+                    <FormControlLabel value={this.props.question.o4} control={<Radio color="primary"/>}
                                       label={this.props.question.o4}/>
                 </RadioGroup>
             </FormControl>
